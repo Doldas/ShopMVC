@@ -18,5 +18,17 @@ namespace ShopMVC.Resopitory
         {
             return db.Items.ToList();
         }
+        public void Add(StockItem item)
+        {
+            db.Items.Add(item);
+        }
+        public void Delete(string articleNumber)
+        {
+            var item = db.Items.Where(i=>i.ArticleNumber==articleNumber);
+            if(item!=null)
+            {
+                db.Items.Remove(item as StockItem);
+            }
+        }
     }
 }
