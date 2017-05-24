@@ -17,7 +17,7 @@ namespace ShopMVC.Controllers
         // GET: ShopLogic
         public ActionResult Index()
         {
-            return View(repo.GetAll());
+            return View(repo.Search("Healing"));
         }
 
         // GET: ShopLogic/Details/5
@@ -53,7 +53,6 @@ namespace ShopMVC.Controllers
         {
             return View();
         }
-
         // POST: ShopLogic/Edit/5
         [HttpPost]
         public ActionResult Edit(Models.StockItem item)
