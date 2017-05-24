@@ -68,21 +68,5 @@ namespace ShopMVC.Controllers
             repo.Delete(id);
             return RedirectToAction("Index");
         }
-
-        // POST: ShopLogic/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-                repo.Delete(id);
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }
