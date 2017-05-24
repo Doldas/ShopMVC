@@ -127,6 +127,10 @@
     <Compile Include="Migrations\201705231305418_Initial.Designer.cs">
       <DependentUpon>201705231305418_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705240920424_Initial1.cs" />
+    <Compile Include="Migrations\201705240920424_Initial1.Designer.cs">
+      <DependentUpon>201705240920424_Initial1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\StockItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -173,11 +177,16 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\ShopLogic\Index.cshtml" />
+    <Content Include="Views\ShopLogic\Details.cshtml" />
     <Content Include="Views\ShopLogic\Create.cshtml" />
+    <Content Include="Views\ShopLogic\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201705231305418_Initial.resx">
       <DependentUpon>201705231305418_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705240920424_Initial1.resx">
+      <DependentUpon>201705240920424_Initial1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

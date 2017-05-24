@@ -23,7 +23,7 @@ namespace ShopMVC.Controllers
         // GET: ShopLogic/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            return View(repo.GetItem(id));
         }
 
         // GET: ShopLogic/Create
@@ -33,21 +33,21 @@ namespace ShopMVC.Controllers
         }
 
         // POST: ShopLogic/Create
+        /*
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(string article,string name,string description,string shelf,Models.ItemCategory category,double price ,int quantity)
         {
-            try
-            {
-
+                repo.Add(article, name, description, shelf, category, price, quantity);
                 // TODO: Add insert logic here
                 return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
         }
-
+        */
+        [HttpPost]
+        public ActionResult Create(Models.StockItem item)
+        {
+            repo.Add(item);
+            return RedirectToAction("Index");
+        }
         // GET: ShopLogic/Edit/5
         public ActionResult Edit(int id)
         {
@@ -56,24 +56,17 @@ namespace ShopMVC.Controllers
 
         // POST: ShopLogic/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(Models.StockItem item)
         {
-            try
-            {
-                // TODO: Add update logic here
-
+                repo.Edit(item);
                 return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
         }
 
         // GET: ShopLogic/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            repo.Delete(id);
+            return RedirectToAction("Index");
         }
 
         // POST: ShopLogic/Delete/5
@@ -83,7 +76,7 @@ namespace ShopMVC.Controllers
             try
             {
                 // TODO: Add delete logic here
-
+                repo.Delete(id);
                 return RedirectToAction("Index");
             }
             catch

@@ -18,6 +18,7 @@ namespace ShopMVC.Migrations
                         ShelfPosition = c.String(),
                         Quantity = c.Int(nullable: false),
                         Description = c.String(),
+                        Category=c.String(),
                         Discriminator = c.String(nullable: false, maxLength: 128),
                     })
                 .PrimaryKey(t => t.ID);
