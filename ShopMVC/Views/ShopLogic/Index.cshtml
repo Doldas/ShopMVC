@@ -2,17 +2,18 @@
 
 <p>
     @Html.ActionLink("Create New", "Create")
+   <input type="text" id="Search" name="Search" placeholder="Search">
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            <input type="button" name="Button" value="@Html.DisplayNameFor(model => model.ArticleNumber)"></input>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Price)
+            <input type="button" name="Button" value="@Html.DisplayNameFor(model => model.ShelfPosition)"></input>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Category)
+            <input type="button" name="Button" value="@Html.DisplayNameFor(model => model.Quantity)"></input>
         </th>
         <th></th>
     </tr>
@@ -20,13 +21,13 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Name)
+            @Html.DisplayFor(modelItem => item.ArticleNumber)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Price)
+            @Html.DisplayFor(modelItem => item.ShelfPosition)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Category)
+            @Html.DisplayFor(modelItem => item.Quantity)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |

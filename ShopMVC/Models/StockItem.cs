@@ -20,8 +20,10 @@ namespace ShopMVC.Models
         [Key]
         public int ID { get; set; }
         //Proporties
+        [StringLength(8)]
         public string ArticleNumber { get; set; }
         public string Name { get; set; }
+        [Range(1,12000)] 
         public double Price { get; set; }
         public string ShelfPosition { get; set; }
         public int Quantity { get; set; }

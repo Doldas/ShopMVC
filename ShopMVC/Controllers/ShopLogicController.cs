@@ -9,17 +9,22 @@ namespace ShopMVC.Controllers
 {
     public class ShopLogicController : Controller
     {
-        private ItemResopitory repo;
+        private ItemRepository repo;
         public ShopLogicController()
         {
-            repo = new ItemResopitory();
+            repo = new ItemRepository();
         }
         // GET: ShopLogic
-        public ActionResult Index()
+        [HttpGet]
+        public ActionResult Index(string Button="",string Search="")
         {
-            return View(repo.Search("Healing"));
+            Button = Button.ToLower();
+            if(Button=="articlenumber")
+            {
+                return View(repo.GetAll(Button, true));
+            }
+            return View(repo.Search(Search));
         }
-
         // GET: ShopLogic/Details/5
         public ActionResult Details(int id)
         {
@@ -51,7 +56,7 @@ namespace ShopMVC.Controllers
         // GET: ShopLogic/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            return View(repo.GetItem(id));
         }
         // POST: ShopLogic/Edit/5
         [HttpPost]

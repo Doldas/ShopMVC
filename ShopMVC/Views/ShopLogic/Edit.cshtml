@@ -1,6 +1,5 @@
 ﻿@model ShopMVC.Models.StockItem
 
-
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -14,9 +13,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ArticleNumber, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                
-                @Html.EditorFor(model => model.ArticleNumber, new { htmlAttributes = new { @class = "form-control"} })
-                @Html.ValidationMessageFor(model => model.ArticleNumber, "", new { @class = "text-danger"})
+                @Html.EditorFor(model => model.ArticleNumber, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ArticleNumber, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -79,7 +77,3 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}

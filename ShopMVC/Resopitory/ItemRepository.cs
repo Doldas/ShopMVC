@@ -1,16 +1,17 @@
 ﻿using ShopMVC.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
 namespace ShopMVC.Resopitory
 {
-    public class ItemResopitory : StockItem
+    public class ItemRepository : StockItem
     {
         private DataAccess.ItemStorageContext db;
 
-        public ItemResopitory()
+        public ItemRepository()
         {
             db = new DataAccess.ItemStorageContext();
         }
@@ -70,45 +71,30 @@ namespace ShopMVC.Resopitory
         }
         public List<StockItem> Search(string searchTerm)
         {
-            return db.Items.Where(item => item.Name.Contains(searchTerm)||item.ArticleNumber.Contains(searchTerm)).ToList();
+            double number = -1; //double number have a default value as -1.00 , just so that we won't have any null values
+
+            //Try to parse the input string to double, if it works, the user want to search for price
+            try
+            {
+                number = double.Parse(searchTerm);
+            }
+            catch //If the parse didin't work it might be a name, category or article number so return a list containing either of those
+            {
+                return db.Items.Where(item => item.Name.Contains(searchTerm) || item.ArticleNumber == searchTerm || item.Category.ToString().Contains(searchTerm)).ToList();
+            }
+            return db.Items.Where(item => item.Price == number).ToList(); //try succeeded so let's return a list based on price
         }
 
         public void Edit(StockItem item)
         {
-            //Default values if null
-            if (item.Name == null)
-            {
-                item.Name = db.Items.Where(i => i.ID == item.ID).First().Name;
-            }
-            if(item.Price==0)
-            {
-                item.Price = db.Items.Where(i => i.ID == item.ID).First().Price;
-            }
-            if(item.Description==null)
-            {
-                item.Description = db.Items.Where(i => i.ID == item.ID).First().Description;
-            }
-            if(item.ArticleNumber==null)
-            {
-                item.ArticleNumber = db.Items.Where(i => i.ID == item.ID).First().ArticleNumber;
-            }
-            if(item.ShelfPosition==null)
-            {
-                item.ShelfPosition = db.Items.Where(i => i.ID == item.ID).First().ShelfPosition;
-            }
-            //Removes the Existing and than added it to the table again.
-            //I don't know how to update an item inside a table yet. 
-            
-            // Sql Code - Update from StockItems set Name='item.Name' where ID=item.ID
-            // A Good question is how do I Update a column instead of removing and adding it?
-
-            db.Items.Remove(db.Items.Where(i=>i.ID==item.ID).First());
-            db.Items.Add(item);
+            //Edits the element without removing and inserting it
+            db.Entry(item).State = EntityState.Modified; 
             //Saves the new Data in the Database
             db.SaveChanges();
         }
         public void Add(StockItem item)
         {
+            item.ID = db.Items.Count();
             db.Items.Add(item);
             db.SaveChanges();
         }

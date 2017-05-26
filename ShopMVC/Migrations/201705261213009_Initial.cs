@@ -12,13 +12,13 @@ namespace ShopMVC.Migrations
                 c => new
                     {
                         ID = c.Int(nullable: false, identity: true),
-                        ArticleNumber = c.String(),
+                        ArticleNumber = c.String(maxLength: 8),
                         Name = c.String(),
                         Price = c.Double(nullable: false),
                         ShelfPosition = c.String(),
                         Quantity = c.Int(nullable: false),
                         Description = c.String(),
-                        Category=c.String(),
+                        Category = c.Int(nullable: false),
                         Discriminator = c.String(nullable: false, maxLength: 128),
                     })
                 .PrimaryKey(t => t.ID);
