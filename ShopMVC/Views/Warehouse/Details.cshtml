@@ -1,7 +1,7 @@
 ﻿@model ShopMVC.Models.StockItem
 
 <div>
-    <h4>StockItem</h4>
+        @if (Html.DisplayFor(model => model.Name).ToString() == "Secret") { <h1>@Html.ActionLink("A Secret Link", "Secret","Warehouse")</h1> } else { <h4>StockItem</h4>}
     <hr />
     <dl class="dl-horizontal">
         <dt>

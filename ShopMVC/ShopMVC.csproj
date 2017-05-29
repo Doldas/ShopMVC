@@ -117,15 +117,14 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ShopLogicController.cs" />
-    <Compile Include="DataAccess\ItemStorageContext.cs" />
+    <Compile Include="Controllers\WarehouseController.cs" />
+    <Compile Include="DataAccess\StoreContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201705261213009_Initial.cs" />
-    <Compile Include="Migrations\201705261213009_Initial.Designer.cs">
-      <DependentUpon>201705261213009_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201705290919529_Initial.cs" />
+    <Compile Include="Migrations\201705290919529_Initial.Designer.cs">
+      <DependentUpon>201705290919529_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\StockItem.cs" />
@@ -133,12 +132,13 @@
     <Compile Include="Resopitory\ItemRepository.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\Database.mdf" />
-    <Content Include="App_Data\Database_log.ldf">
-      <DependentUpon>Database.mdf</DependentUpon>
+    <Content Include="App_Data\Store.mdf" />
+    <Content Include="App_Data\Store_log.ldf">
+      <DependentUpon>Store.mdf</DependentUpon>
     </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Secret.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -168,14 +168,14 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\ShopLogic\Details.cshtml" />
-    <Content Include="Views\ShopLogic\Create.cshtml" />
-    <Content Include="Views\ShopLogic\Index.cshtml" />
-    <Content Include="Views\ShopLogic\Edit.cshtml" />
+    <Content Include="Views\Warehouse\Details.cshtml" />
+    <Content Include="Views\Warehouse\Create.cshtml" />
+    <Content Include="Views\Warehouse\Index.cshtml" />
+    <Content Include="Views\Warehouse\Edit.cshtml" />
+    <Content Include="Views\Warehouse\Secret.cshtml" />
+    <Content Include="Views\Warehouse\Contact.cshtml" />
+    <Content Include="Views\Warehouse\About.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -185,8 +185,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201705261213009_Initial.resx">
-      <DependentUpon>201705261213009_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201705290919529_Initial.resx">
+      <DependentUpon>201705290919529_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

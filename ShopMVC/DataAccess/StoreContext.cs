@@ -6,9 +6,9 @@ using System.Web;
 
 namespace ShopMVC.DataAccess
 {
-    public class ItemStorageContext : DbContext
+    public class StoreContext : DbContext
     {
         public DbSet<Models.StockItem> Items { get; set; }
-        public ItemStorageContext() : base("DefaultConnection") { }
+        public StoreContext() : base("DefaultConnection") { }
     }
 }

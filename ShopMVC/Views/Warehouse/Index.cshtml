@@ -1,19 +1,26 @@
 ﻿@model IEnumerable<ShopMVC.Models.StockItem>
 
-<p>
     @Html.ActionLink("Create New", "Create")
-   <input type="text" id="Search" name="Search" placeholder="Search">
-</p>
+    <form>
+             <input type="text" name="Search" placeholder="Search" />
+    </form>
 <table class="table">
     <tr>
         <th>
-            <input type="button" name="Button" value="@Html.DisplayNameFor(model => model.ArticleNumber)"></input>
+            <form>
+                <input type="submit" name="Sort" value=@Html.DisplayNameFor(model => model.ArticleNumber).ToString() />
+            </form>
+  
         </th>
         <th>
-            <input type="button" name="Button" value="@Html.DisplayNameFor(model => model.ShelfPosition)"></input>
+            <form>
+                <input type="submit" name="Sort" value=@Html.DisplayNameFor(model => model.ShelfPosition).ToString() />
+            </form>
         </th>
         <th>
-            <input type="button" name="Button" value="@Html.DisplayNameFor(model => model.Quantity)"></input>
+            <form>
+                <input type="submit" name="Sort" value=@Html.DisplayNameFor(model => model.Quantity).ToString() />
+            </form>
         </th>
         <th></th>
     </tr>

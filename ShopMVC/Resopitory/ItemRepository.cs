@@ -9,11 +9,11 @@ namespace ShopMVC.Resopitory
 {
     public class ItemRepository : StockItem
     {
-        private DataAccess.ItemStorageContext db;
+        private DataAccess.StoreContext db;
 
         public ItemRepository()
         {
-            db = new DataAccess.ItemStorageContext();
+            db = new DataAccess.StoreContext();
         }
 
         public StockItem GetItem(int id)
@@ -31,40 +31,40 @@ namespace ShopMVC.Resopitory
             return db.Items.ToList();
         }
 
-        public List<StockItem> GetAll(string sortMethod, bool descending)
+        public List<StockItem> GetAll(string sortMethod, bool descending, string search="")
         {
             sortMethod = sortMethod.ToLower();
-            if(sortMethod=="name")
+            if(sortMethod=="articlenumber")
             {
                 if (descending == false)
                 {
-                    return db.Items.OrderBy(item => item.Name).ToList();
+                    return Search(search).OrderBy(item => item.ArticleNumber).ToList();
                 }
                 else if(descending)
                 {
-                    return db.Items.OrderByDescending(item => item.Name).ToList();
+                    return Search(search).OrderByDescending(item => item.ArticleNumber).ToList();
                 }
             }
-            else if(sortMethod=="price")
+            else if(sortMethod=="shelfposition")
             {
                 if (descending == false)
                 {
-                    return db.Items.OrderBy(item => item.Price).ToList();
+                    return Search(search).OrderBy(item => item.ShelfPosition).ToList();
                 }
                 else if (descending)
                 {
-                    return db.Items.OrderByDescending(item => item.Price).ToList();
+                    return Search(search).OrderByDescending(item => item.ShelfPosition).ToList();
                 }
             }
-            else if (sortMethod == "category")
+            else if (sortMethod == "quantity")
             {
                 if (descending == false)
                 {
-                    return db.Items.OrderBy(item => item.Category).ToList();
+                    return Search(search).OrderBy(item => item.Quantity).ToList();
                 }
                 else if (descending)
                 {
-                    return db.Items.OrderByDescending(item => item.Category).ToList();
+                    return Search(search).OrderByDescending(item => item.Quantity).ToList();
                 }
             }
             return db.Items.ToList(); //Non Sorted List
@@ -103,6 +103,7 @@ namespace ShopMVC.Resopitory
             db.Items.Add(
                 new StockItem
                 {
+                    ID=db.Items.Count(),
                     ArticleNumber=article,
                     Name=name,
                     Description=description,

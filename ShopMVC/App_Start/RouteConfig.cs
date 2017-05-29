@@ -15,8 +15,8 @@ namespace ShopMVC
 
             routes.MapRoute(
                 name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "ShopLogic", action = "Index", id = UrlParameter.Optional }
+                url: "{action}/{id}",
+                defaults: new { controller = "Warehouse", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

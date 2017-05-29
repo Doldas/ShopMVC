@@ -13,7 +13,7 @@ namespace ShopMVC.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201705261213009_Initial"; }
+            get { return "201705290919529_Initial"; }
         }
         
         string IMigrationMetadata.Source

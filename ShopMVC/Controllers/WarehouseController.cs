@@ -7,21 +7,23 @@ using System.Web.Mvc;
 
 namespace ShopMVC.Controllers
 {
-    public class ShopLogicController : Controller
+    public class WarehouseController : Controller
     {
+        //Private Variable
         private ItemRepository repo;
-        public ShopLogicController()
+        //Constructor
+        public WarehouseController()
         {
             repo = new ItemRepository();
         }
-        // GET: ShopLogic
+
+        // GET: ShopLogic/Index/
         [HttpGet]
-        public ActionResult Index(string Button="",string Search="")
+        public ActionResult Index(string Sort,string Search="")
         {
-            Button = Button.ToLower();
-            if(Button=="articlenumber")
+            if(Sort!=null)
             {
-                return View(repo.GetAll(Button, true));
+                return View(repo.GetAll(Sort,false,Search)); 
             }
             return View(repo.Search(Search));
         }
@@ -38,15 +40,6 @@ namespace ShopMVC.Controllers
         }
 
         // POST: ShopLogic/Create
-        /*
-        [HttpPost]
-        public ActionResult Create(string article,string name,string description,string shelf,Models.ItemCategory category,double price ,int quantity)
-        {
-                repo.Add(article, name, description, shelf, category, price, quantity);
-                // TODO: Add insert logic here
-                return RedirectToAction("Index");
-        }
-        */
         [HttpPost]
         public ActionResult Create(Models.StockItem item)
         {
@@ -71,6 +64,21 @@ namespace ShopMVC.Controllers
         {
             repo.Delete(id);
             return RedirectToAction("Index");
+        }
+        // A Secret View
+        public ActionResult Secret()
+        {
+            return View();
+        }
+        //Contact
+        public ActionResult Contact()
+        {
+            return View();
+        }
+        //About
+        public ActionResult About()
+        {
+            return View();
         }
     }
 }

@@ -5,41 +5,41 @@ namespace ShopMVC.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<ShopMVC.DataAccess.ItemStorageContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<ShopMVC.DataAccess.StoreContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(ShopMVC.DataAccess.ItemStorageContext context)
+        protected override void Seed(ShopMVC.DataAccess.StoreContext context)
         {
-            context.Items.AddOrUpdate(item=>item.ID,
+                        context.Items.AddOrUpdate(
             new Models.StockItem
             {
-                ID=context.Items.Count(),
-                Name="Healing Potion IV",
-                Description="A Healing Potion",
-                Category=Models.ItemCategory.Potion,
-                Price=129,
-                Quantity=6,
-                ShelfPosition="Health Self",
-                ArticleNumber="#001-001"
+                ID = 0,
+                Name = "Healing Potion IV",
+                Description = "A Healing Potion",
+                Category = Models.ItemCategory.Potion,
+                Price = 129,
+                Quantity = 6,
+                ShelfPosition = "Health Self",
+                ArticleNumber = "#001-001"
             },
             new Models.StockItem
             {
-                ID = context.Items.Count(),
+                ID = 1,
                 Name = "God Potion I",
                 Description = "A potion that gives you god like powers",
                 Category = Models.ItemCategory.Potion,
                 Price = 679,
                 Quantity = 2,
                 ShelfPosition = "Secret Self",
-                ArticleNumber = "#000-001"
+                ArticleNumber = "#003-001"
             },
             new Models.StockItem
             {
-                ID = context.Items.Count(),
+                ID = 2,
                 Name = "Unicorn(White)",
                 Description = "A Magical Unicorn",
                 Category = Models.ItemCategory.Mythical_Creatures,
@@ -50,7 +50,7 @@ namespace ShopMVC.Migrations
             },
             new Models.StockItem
             {
-                ID = context.Items.Count(),
+                ID = 3,
                 Name = "Unicorn(Black)",
                 Description = "A Magical Unicorn",
                 Category = Models.ItemCategory.Mythical_Creatures,
