@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Web;
+﻿using System.Data.Entity;
 
 namespace ShopMVC.DataAccess
 {
+    //a context for handling Items from database
     public class StoreContext : DbContext
     {
         public DbSet<Models.StockItem> Items { get; set; }

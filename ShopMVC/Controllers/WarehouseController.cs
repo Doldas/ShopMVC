@@ -30,7 +30,11 @@ namespace ShopMVC.Controllers
         // GET: ShopLogic/Details/5
         public ActionResult Details(int id)
         {
-            return View(repo.GetItem(id));
+            if (repo.GetItem(id) as Models.StockItem != null)
+            {
+                return View(repo.GetItem(id));
+            }
+            return RedirectToAction("Index", "Warehouse");
         }
 
         // GET: ShopLogic/Create
@@ -49,7 +53,11 @@ namespace ShopMVC.Controllers
         // GET: ShopLogic/Edit/5
         public ActionResult Edit(int id)
         {
-            return View(repo.GetItem(id));
+            if (repo.GetItem(id) as Models.StockItem != null)
+            {
+                return View(repo.GetItem(id));
+            }
+            return RedirectToAction("Index");
         }
         // POST: ShopLogic/Edit/5
         [HttpPost]

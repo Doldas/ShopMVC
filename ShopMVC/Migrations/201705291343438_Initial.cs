@@ -12,8 +12,8 @@ namespace ShopMVC.Migrations
                 c => new
                     {
                         ID = c.Int(nullable: false, identity: true),
-                        ArticleNumber = c.String(maxLength: 8),
-                        Name = c.String(),
+                        ArticleNumber = c.String(nullable: false, maxLength: 8),
+                        Name = c.String(nullable: false),
                         Price = c.Double(nullable: false),
                         ShelfPosition = c.String(),
                         Quantity = c.Int(nullable: false),

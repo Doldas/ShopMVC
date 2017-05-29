@@ -1,9 +1,7 @@
 ﻿using ShopMVC.Models;
-using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Web;
 
 namespace ShopMVC.Resopitory
 {
@@ -11,26 +9,37 @@ namespace ShopMVC.Resopitory
     {
         private DataAccess.StoreContext db;
 
+        #region Constructor
+        //Constructor
         public ItemRepository()
         {
             db = new DataAccess.StoreContext();
         }
+        #endregion
 
+        #region Get Item(s)
+
+        #region Get specific Item
+        //Get a specific item that have same id as the primary key ID
         public StockItem GetItem(int id)
         {
             return db.Items.Where(item=>item.ID==id).FirstOrDefault();
         }
-
+        //Get a specific item based on the article number
         public StockItem GetItem(string article)
         {
             return db.Items.Where(item=>item.ArticleNumber==ArticleNumber).FirstOrDefault();
         }
-
+        #endregion
+        //GET All StockItems from Database
         public List<StockItem> GetAll()
         {
             return db.Items.ToList();
         }
-
+        #region Sorted List
+        //An Overloaded GetAll that returns an ordered list depending on the sort method. 
+        //This method should be able to sort a list with searched items but because of the redirect back to index page
+        //The search variable will contain nothing. The sort still works However
         public List<StockItem> GetAll(string sortMethod, bool descending, string search="")
         {
             sortMethod = sortMethod.ToLower();
@@ -69,6 +78,11 @@ namespace ShopMVC.Resopitory
             }
             return db.Items.ToList(); //Non Sorted List
         }
+        #endregion
+
+        #endregion
+
+        #region Search Item(s)
         public List<StockItem> Search(string searchTerm)
         {
             double number = -1; //double number have a default value as -1.00 , just so that we won't have any null values
@@ -84,7 +98,9 @@ namespace ShopMVC.Resopitory
             }
             return db.Items.Where(item => item.Price == number).ToList(); //try succeeded so let's return a list based on price
         }
+        #endregion
 
+        #region Edit Item
         public void Edit(StockItem item)
         {
             //Edits the element without removing and inserting it
@@ -92,12 +108,17 @@ namespace ShopMVC.Resopitory
             //Saves the new Data in the Database
             db.SaveChanges();
         }
+        #endregion
+
+        #region Add item
+        //Add a StockItem to database
         public void Add(StockItem item)
         {
             item.ID = db.Items.Count();
             db.Items.Add(item);
             db.SaveChanges();
         }
+        //Add item to database with all variables inputs
         public void Add(string article,string name,string description,string shelf,Models.ItemCategory category,double price ,int quantity)
         {
             db.Items.Add(
@@ -115,10 +136,21 @@ namespace ShopMVC.Resopitory
             );
             db.SaveChanges();
         }
+        #endregion
+
+        #region Delete
+        //Removes a specific item with the database id
         public void Delete(int id)
         {
                 db.Items.Remove(db.Items.Where(i => i.ID == id).FirstOrDefault());
                 db.SaveChanges();
         }
+        //Removes a specific item that have the same article number
+        public void Delete(string articleNumber)
+        {
+            db.Items.Remove(db.Items.Where(i => i.ArticleNumber == articleNumber).FirstOrDefault());
+            db.SaveChanges();
+        }
+        #endregion
     }
 }
