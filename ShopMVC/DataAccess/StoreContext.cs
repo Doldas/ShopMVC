@@ -2,7 +2,7 @@
 
 namespace ShopMVC.DataAccess
 {
-    //a context for handling Items from database
+    //a context for handling Vehicles from database
     public class StoreContext : DbContext
     {
         public DbSet<Models.StockItem> Items { get; set; }
